@@ -10,7 +10,8 @@ class DevProvider with ChangeNotifier {
       final token = await FirebaseAuth.instance.currentUser!.getIdToken();
       final newendpoint = getdev + token.toString();
 
-      final response = await NetworkEngine().get(endPoint: newendpoint);
+      final response =
+          await NetworkEngine().post(endPoint: newendpoint, data: {});
       var details = response.data['data'];
       Developer dev = Developer.fromJson(details);
       return dev;
